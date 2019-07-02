@@ -67,6 +67,21 @@
 ;; Mouse color
 (set-mouse-color "#20B2AA")
 
+;; LSP
+;; =====================================================================
+
+(require 'lsp-mode)
+
+(setq lsp-enable-snippet nil)
+
+;; For C++
+(add-hook 'c++-mode-hook #'lsp-deferred)
+
+
+;; UI
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
 ;; Editing
 ;; =====================================================================
 
