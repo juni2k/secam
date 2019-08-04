@@ -107,11 +107,6 @@
 ;; Highlight matching parentheses on "hovering" over them
 (show-paren-mode 1)
 
-;; Smooth scrolling
-(require 'smooth-scrolling)
-(smooth-scrolling-mode 1)
-(setq smooth-scroll-margin 5)
-
 ;; Enable EditorConfig
 (editorconfig-mode 1)
 
