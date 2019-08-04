@@ -12,6 +12,11 @@
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
+;; use-package
+;; =====================================================================
+(eval-when-compile
+  (require 'use-package))
+
 ;; Defaults etc.
 ;; =====================================================================
 
@@ -34,13 +39,16 @@
 ;; =====================================================================
 
 ;; Web mode
-(add-to-list 'auto-mode-alist '("\\.tt2\\'" . web-mode))
-(defun web-mode-custom-indent ()
-  (setq web-mode-markup-indent-offset nanont-indent-level)
-  (setq web-mode-css-indent-offset nanont-indent-level)
-  (setq web-mode-code-indent-offset nanont-indent-level)
-  (setq web-mode-indent-style nanont-indent-level))
-(add-hook 'web-mode-hook 'web-mode-custom-indent)
+
+(use-package web-mode
+  :mode "\\.tt2\\'"
+  :init
+  (defun web-mode-custom-indent ()
+    (setq web-mode-markup-indent-offset nanont-indent-level)
+    (setq web-mode-css-indent-offset nanont-indent-level)
+    (setq web-mode-code-indent-offset nanont-indent-level)
+    (setq web-mode-indent-style nanont-indent-level))
+  (add-hook 'web-mode-hook 'web-mode-custom-indent))
 
 ;; Theming
 ;; =====================================================================
@@ -49,7 +57,7 @@
       custom-theme-load-path)
 
 ;; Theme
-(load-theme 'faff t)
+(load-theme 'paganini t)
 
 ;; Font
 (add-to-list 'default-frame-alist
@@ -67,20 +75,28 @@
 ;; Mouse color
 (set-mouse-color "#20B2AA")
 
+;; Company
+;; =====================================================================
+(use-package company
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
+
 ;; LSP
 ;; =====================================================================
 
-(require 'lsp-mode)
+(use-package lsp-mode
+  :init
+  (setq lsp-enable-snippet nil)
+  (add-hook 'c++-mode-hook #'lsp-deferred))
 
-(setq lsp-enable-snippet nil)
+(use-package lsp-ui
+  :init
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-;; For C++
-(add-hook 'c++-mode-hook #'lsp-deferred)
-
-
-;; UI
-(require 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(use-package company-lsp
+  :after (lsp-mode company)
+  :init
+  (push 'company-lsp company-backends))
 
 ;; Editing
 ;; =====================================================================
@@ -108,7 +124,9 @@
 (show-paren-mode 1)
 
 ;; Enable EditorConfig
-(editorconfig-mode 1)
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 ;; Saving
 ;; =====================================================================
@@ -171,10 +189,10 @@
    ["#333" "#ff5f87" "#3affa3" "#f6df92" "#b2baf6" "#c350ff" "#5af2ee" "#ccc"])
  '(custom-safe-themes
    (quote
-    ("16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "6f9fc46380ff9f00da8c10b47bfb01341fe4d8a0e68dffffb0c0ba1d2cd887d8" "d986619578e8a8dabb846e91c54090b82d937672f54ffa0ef247c0428813d602" "3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" "c221703cc604312f6f72349704f7329f80ccc6a261af769332ec80171b728cc0" "de1f10725856538a8c373b3a314d41b450b8eba21d653c4a4498d52bb801ecd2" "5ed25f51c2ed06fc63ada02d3af8ed860d62707e96efc826f4a88fd511f45a1d" "4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" "296da7c17c698e963c79b985c6822db0b627f51474c161d82853d2cb1b90afb0" "ef98b560dcbd6af86fbe7fd15d56454f3e6046a3a0abd25314cfaaefd3744a9e" "905cee72827a1ac7ad75d7407bfb222ad519f9ebcd9d1f70f00e1115a8448cf6" "f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" "a5956ec25b719bf325e847864e16578c61d8af3e8a3d95f60f9040d02497e408" default)))
+    ("93a0885d5f46d2aeac12bf6be1754faa7d5e28b27926b8aa812840fe7d0b7983" "16dd114a84d0aeccc5ad6fd64752a11ea2e841e3853234f19dc02a7b91f5d661" "6f9fc46380ff9f00da8c10b47bfb01341fe4d8a0e68dffffb0c0ba1d2cd887d8" "d986619578e8a8dabb846e91c54090b82d937672f54ffa0ef247c0428813d602" "3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" "c221703cc604312f6f72349704f7329f80ccc6a261af769332ec80171b728cc0" "de1f10725856538a8c373b3a314d41b450b8eba21d653c4a4498d52bb801ecd2" "5ed25f51c2ed06fc63ada02d3af8ed860d62707e96efc826f4a88fd511f45a1d" "4c7a1f0559674bf6d5dd06ec52c8badc5ba6e091f954ea364a020ed702665aa1" "296da7c17c698e963c79b985c6822db0b627f51474c161d82853d2cb1b90afb0" "ef98b560dcbd6af86fbe7fd15d56454f3e6046a3a0abd25314cfaaefd3744a9e" "905cee72827a1ac7ad75d7407bfb222ad519f9ebcd9d1f70f00e1115a8448cf6" "f27c3fcfb19bf38892bc6e72d0046af7a1ded81f54435f9d4d09b3bff9c52fc1" "a5956ec25b719bf325e847864e16578c61d8af3e8a3d95f60f9040d02497e408" default)))
  '(package-selected-packages
    (quote
-    (clang-format flycheck lsp-ui lsp-mode lua-mode fzf base16-theme smooth-scrolling subatomic-theme auto-complete go-mode editorconfig fish-mode grandshell-theme magit typescript-mode paganini-theme brutalist-theme fireplace web-mode gruvbox-theme markdown-mode markdown-mode+ yaml-mode faff-theme))))
+    (use-package perl6-mode company-lsp doom-themes clang-format flycheck lsp-ui lsp-mode lua-mode fzf base16-theme smooth-scrolling subatomic-theme auto-complete go-mode editorconfig fish-mode grandshell-theme magit typescript-mode paganini-theme brutalist-theme fireplace web-mode gruvbox-theme markdown-mode markdown-mode+ yaml-mode faff-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
