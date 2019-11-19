@@ -51,10 +51,6 @@
   :config
   (load-theme 'gruvbox-dark-hard t))
 
-;; Font
-(add-to-list 'default-frame-alist
-	     '(font . "6x13"))
-
 ;; No tool bar
 (tool-bar-mode -1)
 
