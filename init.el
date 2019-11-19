@@ -67,10 +67,11 @@
 ;; Mouse color
 (set-mouse-color "#20B2AA")
 
-;; Modes
+;; Modes and Languages
 ;; =====================================================================
 
 ;; Web mode
+;; --------
 
 (use-package web-mode
   :mode "\\.tt2\\'"
@@ -81,6 +82,49 @@
     (setq web-mode-code-indent-offset nanont-indent-level)
     (setq web-mode-indent-style nanont-indent-level))
   (add-hook 'web-mode-hook 'web-mode-custom-indent))
+
+;; CSS Mode
+;; --------
+
+(setq css-indent-offset nanont-indent-level)
+
+;; Perl oddities
+;; -------------
+
+;; Disable perl-mode's terrible electric behaviour for some keys
+(defun perl-mode-disable-auto-indent ()
+  (local-unset-key (kbd "{"))
+  (local-unset-key (kbd "}"))
+  (local-unset-key (kbd ";"))
+  (local-unset-key (kbd ":")))
+(add-hook 'perl-mode-hook 'perl-mode-disable-auto-indent)
+
+;; Indentation
+(setq perl-indent-level nanont-indent-level)
+
+;; Lua oddities
+;; ------------
+
+(setq lua-indent-level nanont-indent-level)
+
+;; Go oddities
+;; -----------
+
+(setq gofmt-command "goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+;; C++ perversions
+;; ---------------
+
+;; Apply style from (n-parent dir) .clang-format
+(setq clang-format-style-option "file")
+
+;; clang-format
+(defun nanont-c++-mode-before-save-hook ()
+  (when (eq major-mode 'c++-mode)
+    (clang-format-buffer)))
+
+(add-hook 'before-save-hook 'nanont-c++-mode-before-save-hook)
 
 ;; Company
 ;; =====================================================================
@@ -125,46 +169,3 @@
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; CSS Mode
-;; =====================================================================
-
-(setq css-indent-offset nanont-indent-level)
-
-;; Perl oddities
-;; =====================================================================
-
-;; Disable perl-mode's terrible electric behaviour for some keys
-(defun perl-mode-disable-auto-indent ()
-  (local-unset-key (kbd "{"))
-  (local-unset-key (kbd "}"))
-  (local-unset-key (kbd ";"))
-  (local-unset-key (kbd ":")))
-(add-hook 'perl-mode-hook 'perl-mode-disable-auto-indent)
-
-;; Indentation
-(setq perl-indent-level nanont-indent-level)
-
-;; Lua oddities
-;; =====================================================================
-
-(setq lua-indent-level nanont-indent-level)
-
-;; Go oddities
-;; =====================================================================
-
-(setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-
-;; C++ perversions
-;; =====================================================================
-
-;; Apply style from (n-parent dir) .clang-format
-(setq clang-format-style-option "file")
-
-;; clang-format
-(defun nanont-c++-mode-before-save-hook ()
-  (when (eq major-mode 'c++-mode)
-    (clang-format-buffer)))
-
-(add-hook 'before-save-hook 'nanont-c++-mode-before-save-hook)
