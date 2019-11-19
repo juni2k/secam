@@ -61,7 +61,10 @@
       custom-theme-load-path)
 
 ;; Theme
-(load-theme 'paganini t)
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-hard t))
 
 ;; Font
 (add-to-list 'default-frame-alist
