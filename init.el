@@ -88,23 +88,6 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode))
 
-;; LSP
-;; =====================================================================
-
-(use-package lsp-mode
-  :init
-  (setq lsp-enable-snippet nil)
-  (add-hook 'c++-mode-hook #'lsp-deferred))
-
-(use-package lsp-ui
-  :init
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package company-lsp
-  :after (lsp-mode company)
-  :init
-  (push 'company-lsp company-backends))
-
 ;; Editing
 ;; =====================================================================
 
