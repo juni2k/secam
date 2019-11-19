@@ -39,21 +39,6 @@
 ;; Don't litter autosave files everywhere
 (setq backup-directory-alist `(("." . "~/.emacs-autosave")))
 
-;; Modes
-;; =====================================================================
-
-;; Web mode
-
-(use-package web-mode
-  :mode "\\.tt2\\'"
-  :init
-  (defun web-mode-custom-indent ()
-    (setq web-mode-markup-indent-offset nanont-indent-level)
-    (setq web-mode-css-indent-offset nanont-indent-level)
-    (setq web-mode-code-indent-offset nanont-indent-level)
-    (setq web-mode-indent-style nanont-indent-level))
-  (add-hook 'web-mode-hook 'web-mode-custom-indent))
-
 ;; Theming
 ;; =====================================================================
 
@@ -81,6 +66,21 @@
 
 ;; Mouse color
 (set-mouse-color "#20B2AA")
+
+;; Modes
+;; =====================================================================
+
+;; Web mode
+
+(use-package web-mode
+  :mode "\\.tt2\\'"
+  :init
+  (defun web-mode-custom-indent ()
+    (setq web-mode-markup-indent-offset nanont-indent-level)
+    (setq web-mode-css-indent-offset nanont-indent-level)
+    (setq web-mode-code-indent-offset nanont-indent-level)
+    (setq web-mode-indent-style nanont-indent-level))
+  (add-hook 'web-mode-hook 'web-mode-custom-indent))
 
 ;; Company
 ;; =====================================================================
