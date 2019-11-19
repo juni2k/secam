@@ -165,3 +165,7 @@
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Keybindings
+;; =====================================================================
+(define-key global-map (kbd "M-<tab>") 'mode-line-other-buffer)
