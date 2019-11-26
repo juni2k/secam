@@ -107,8 +107,12 @@
 ;; Go oddities
 ;; -----------
 
+;; Run goimports as a formatter
 (setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
+(defun nanont-go-mode-before-save-hook ()
+  (when (eq major-mode 'go-mode)
+    (gofmt-before-save)))
+(add-hook 'before-save-hook 'nanont-go-mode-before-save-hook)
 
 ;; C++ perversions
 ;; ---------------
