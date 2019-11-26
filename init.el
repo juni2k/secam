@@ -130,6 +130,15 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode))
 
+;; FZF
+;; =====================================================================
+(use-package fzf
+  :ensure t
+  :init
+  ; This actually Does The Right Thing by asking
+  ; for a path if not in a git directory! Funky!
+  (define-key global-map (kbd "C-c C-f") 'fzf-git))
+
 ;; Editing
 ;; =====================================================================
 
@@ -167,6 +176,6 @@
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Keybindings
+;; Misc. Keybindings
 ;; =====================================================================
 (define-key global-map (kbd "C-<tab>") 'mode-line-other-buffer)
