@@ -70,7 +70,8 @@
 ;; --------
 
 (use-package web-mode
-  :mode "\\.tt2\\'"
+  :ensure t
+  :mode "\\.\(tt2\|html\)\\'"
   :init
   (defun web-mode-custom-indent ()
     (setq web-mode-markup-indent-offset nanont-indent-level)
