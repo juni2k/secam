@@ -168,4 +168,4 @@
 
 ;; Keybindings
 ;; =====================================================================
-(define-key global-map (kbd "M-<tab>") 'mode-line-other-buffer)
+(define-key global-map (kbd "C-<tab>") 'mode-line-other-buffer)
