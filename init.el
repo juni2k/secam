@@ -24,7 +24,7 @@
 (setq frame-title-format '("" "%b :: Emacs NT 4.0 Workstation"))
 
 ;; Constants
-(setq nanont-indent-level 2)
+(setq nanont/indent-level 2)
 
 ;; Customization
 ;; =====================================================================
@@ -74,16 +74,16 @@
   :mode "\\.\(tt2\|html\)\\'"
   :init
   (defun web-mode-custom-indent ()
-    (setq web-mode-markup-indent-offset nanont-indent-level)
-    (setq web-mode-css-indent-offset nanont-indent-level)
-    (setq web-mode-code-indent-offset nanont-indent-level)
-    (setq web-mode-indent-style nanont-indent-level))
+    (setq web-mode-markup-indent-offset nanont/indent-level)
+    (setq web-mode-css-indent-offset nanont/indent-level)
+    (setq web-mode-code-indent-offset nanont/indent-level)
+    (setq web-mode-indent-style nanont/indent-level))
   (add-hook 'web-mode-hook 'web-mode-custom-indent))
 
 ;; CSS Mode
 ;; --------
 
-(setq css-indent-offset nanont-indent-level)
+(setq css-indent-offset nanont/indent-level)
 
 ;; Perl oddities
 ;; -------------
@@ -97,22 +97,22 @@
 (add-hook 'perl-mode-hook 'perl-mode-disable-auto-indent)
 
 ;; Indentation
-(setq perl-indent-level nanont-indent-level)
+(setq perl-indent-level nanont/indent-level)
 
 ;; Lua oddities
 ;; ------------
 
-(setq lua-indent-level nanont-indent-level)
+(setq lua-indent-level nanont/indent-level)
 
 ;; Go oddities
 ;; -----------
 
 ;; Run goimports as a formatter
 (setq gofmt-command "goimports")
-(defun nanont-go-mode-before-save-hook ()
+(defun nanont/go-mode-before-save-hook ()
   (when (eq major-mode 'go-mode)
     (gofmt-before-save)))
-(add-hook 'before-save-hook 'nanont-go-mode-before-save-hook)
+(add-hook 'before-save-hook 'nanont/go-mode-before-save-hook)
 
 ;; C++ perversions
 ;; ---------------
@@ -121,11 +121,11 @@
 (setq clang-format-style-option "file")
 
 ;; clang-format
-(defun nanont-c++-mode-before-save-hook ()
+(defun nanont/c++-mode-before-save-hook ()
   (when (eq major-mode 'c++-mode)
     (clang-format-buffer)))
 
-(add-hook 'before-save-hook 'nanont-c++-mode-before-save-hook)
+(add-hook 'before-save-hook 'nanont/c++-mode-before-save-hook)
 
 ;; Company
 ;; =====================================================================
@@ -156,7 +156,7 @@
 
 ;; Tell tabs to go home, and set indentation leven
 (setq-default indent-tabs-mode nil)
-(setq tab-width nanont-indent-level)
+(setq tab-width nanont/indent-level)
 
 ;; Don't indent the previous line when typing <RET>
 ;; (but keep indenting the new line)
