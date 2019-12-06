@@ -187,3 +187,4 @@
 ;; Misc. Keybindings
 ;; =====================================================================
 (define-key global-map (kbd "C-<tab>") 'mode-line-other-buffer)
+(define-key global-map (kbd "C-<") 'undo)
