@@ -51,6 +51,10 @@
   :config
   (load-theme 'gruvbox-dark-hard t))
 
+;; Courier New can go fuck itself
+(when (eq window-system 'w32)
+  (set-face-attribute 'default nil :family "Consolas" :height 110))
+
 ;; No tool bar
 (tool-bar-mode -1)
 
