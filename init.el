@@ -103,6 +103,9 @@
 ;; Indentation
 (setq perl-indent-level nanont/indent-level)
 
+;; Align ( ) like { }
+(setq perl-indent-parens-as-block t)
+
 ;; Lua oddities
 ;; ------------
 
