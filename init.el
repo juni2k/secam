@@ -185,7 +185,10 @@
 ;; =====================================================================
 
 ;; Delete trailing whitespace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(defun nanont/delete-trailing-whitespace-hook ()
+  (when (not (eq major-mode 'markdown-mode))
+    (delete-trailing-whitespace)))
+(add-hook 'before-save-hook 'nanont/delete-trailing-whitespace-hook)
 
 ;; Misc. Keybindings
 ;; =====================================================================
