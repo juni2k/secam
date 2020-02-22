@@ -106,6 +106,9 @@
 ;; Align ( ) like { }
 (setq perl-indent-parens-as-block t)
 
+;; Test files
+(add-to-list 'auto-mode-alist '("\\.t\\'" . perl-mode))
+
 ;; Lua oddities
 ;; ------------
 
