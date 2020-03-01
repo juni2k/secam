@@ -70,6 +70,12 @@
 ;; Modes and Languages
 ;; =====================================================================
 
+;; Lisp
+;; ----
+
+;; We stan Steel Bank CL!
+(setq inferior-lisp-program "sbcl")
+
 ;; Web mode
 ;; --------
 
