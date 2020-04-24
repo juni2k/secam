@@ -190,6 +190,17 @@
   :config
   (editorconfig-mode 1))
 
+;; Org
+;; =====================================================================
+
+;; org-journal
+(use-package org-journal
+  :defer t
+  :custom
+  (org-journal-file-type 'weekly))
+
+(define-key global-map (kbd "C-c C-j") 'org-journal-new-entry)
+
 ;; Saving
 ;; =====================================================================
 
