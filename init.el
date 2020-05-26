@@ -33,6 +33,22 @@
 ;; Startup
 ;; =====================================================================
 
+;; Dashboard
+;; =====================================================================
+(use-package page-break-lines
+  :ensure t)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-items '((recents . 15)))
+  ;; Text logo
+  (setq dashboard-startup-banner 3)
+  (dashboard-setup-startup-hook)
+  ;; Make n and p work like in dired
+  (define-key dashboard-mode-map (kbd "p") 'dashboard-previous-line)
+  (define-key dashboard-mode-map (kbd "n") 'dashboard-next-line))
+
 ;; Files
 ;; =====================================================================
 
