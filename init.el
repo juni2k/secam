@@ -33,6 +33,11 @@
 ;; Startup
 ;; =====================================================================
 
+;; Get rid of that super shitty default behaviour to open
+;, new instances for file preview in a split window
+; (add-hook 'emacs-startup-hook 'delete-other-windows)
+(setq inhibit-startup-screen t)
+
 ;; Dashboard
 ;; =====================================================================
 (use-package page-break-lines
