@@ -239,3 +239,4 @@
 (define-key global-map (kbd "C-<tab>") 'mode-line-other-buffer)
 (define-key global-map (kbd "C-<") 'undo)
 (define-key global-map (kbd "<f5>") 'revert-buffer)
+;; (define-key global-map (kbd "C-x k") 'kill-buffer-and-window)
