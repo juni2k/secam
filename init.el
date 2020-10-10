@@ -241,6 +241,9 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; Log time when closing TODO items
+(setq org-log-done 'time)
+
 ;; org-journal
 (use-package org-journal
   :defer t
