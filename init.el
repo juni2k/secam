@@ -164,6 +164,20 @@
 
 (add-hook 'before-save-hook 'nanont/c++-mode-before-save-hook)
 
+;; Language Server oddities
+;; ========================
+
+(use-package ccls
+  :ensure t)
+
+(use-package lsp-mode
+  :ensure t
+  :config
+  (setq ccls-executable "ccls")
+  ;; Deferred for C
+  :commands (lsp lsp-deferred)
+  :hook (c-mode . (lambda () (require 'ccls) (lsp-deferred))))
+
 ;; Company
 ;; =====================================================================
 (use-package company
