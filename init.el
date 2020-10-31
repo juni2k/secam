@@ -119,22 +119,21 @@
 ;; Perl oddities
 ;; -------------
 
-;; Disable perl-mode's terrible electric behaviour for some keys
-(defun perl-mode-disable-auto-indent ()
-  (local-unset-key (kbd "{"))
-  (local-unset-key (kbd "}"))
-  (local-unset-key (kbd ";"))
-  (local-unset-key (kbd ":")))
-(add-hook 'perl-mode-hook 'perl-mode-disable-auto-indent)
-
-;; Indentation
-(setq perl-indent-level nanont/indent-level)
-
-;; Align ( ) like { }
-(setq perl-indent-parens-as-block t)
+;; DBIx::Class::Schema::Loader fucks up highlighting and indentation in
+;; perl-mode but cperl-mode gets it right. From now on, fuck perl-mode.
+(defalias 'perl-mode 'cperl-mode)
 
 ;; Test files
-(add-to-list 'auto-mode-alist '("\\.t\\'" . perl-mode))
+(add-to-list 'auto-mode-alist '("\\.t\\'" . cperl-mode))
+
+;; Indentation
+(setq cperl-indent-level nanont/indent-level)
+
+;; Align ( ) like { }
+(setq cperl-indent-parens-as-block t)
+
+;; Get rid of displaying whitespace as underlines
+(setq cperl-invalid-face nil)
 
 ;; Lua oddities
 ;; ------------
