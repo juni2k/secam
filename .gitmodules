@@ -1,0 +1,3 @@
+[submodule "vendor-lisp/fzf.el"]
+	path = vendor-lisp/fzf.el
+	url = https://github.com/xshyamx/fzf.el

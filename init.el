@@ -30,6 +30,14 @@
 ;; =====================================================================
 (setq custom-file (concat user-emacs-directory "custom.el"))
 
+;; Add 3rd-party-lisp to load path
+(let ((add-it (lambda (dir)
+                (add-to-list 'load-path dir))))
+  (mapc add-it
+        (directory-files (concat user-emacs-directory "vendor-lisp")
+                         t
+                         directory-files-no-dot-files-regexp)))
+
 ;; Startup
 ;; =====================================================================
 
@@ -187,7 +195,7 @@
 ;; FZF
 ;; =====================================================================
 (use-package fzf
-  :ensure t
+  ; :ensure t
   :init
   ; This actually Does The Right Thing by asking
   ; for a path if not in a git directory! Funky!
