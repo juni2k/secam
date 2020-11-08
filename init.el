@@ -12,9 +12,10 @@
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-;; use-package
+;; Require(s)
 ;; =====================================================================
 (eval-when-compile
+  (require 'bind-key)
   (require 'use-package))
 
 ;; Defaults etc.
@@ -199,7 +200,7 @@
   :init
   ; This actually Does The Right Thing by asking
   ; for a path if not in a git directory! Funky!
-  (define-key global-map (kbd "C-c C-f") 'fzf-git))
+  (bind-key* "C-c C-f" 'fzf-git))
 
 ;; Editing
 ;; =====================================================================
@@ -244,9 +245,9 @@
 ;; =====================================================================
 
 
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
+(bind-key* "C-c l" 'org-store-link)
+(bind-key* "C-c a" 'org-agenda)
+(bind-key* "C-c c" 'org-capture)
 
 ;; Log time when closing TODO items
 (setq org-log-done 'time)
@@ -258,7 +259,7 @@
   (org-extend-today-until 6) ; New day begins at 6 am!
   (org-journal-file-type 'weekly))
 
-(define-key global-map (kbd "C-c C-j") 'org-journal-new-entry)
+(bind-key* "C-c C-j" 'org-journal-new-entry)
 
 ;; Saving
 ;; =====================================================================
@@ -271,7 +272,7 @@
 
 ;; Misc. Keybindings
 ;; =====================================================================
-(define-key global-map (kbd "C-<tab>") 'mode-line-other-buffer)
-(define-key global-map (kbd "C-<") 'undo)
-(define-key global-map (kbd "<f5>") 'revert-buffer)
+(bind-key* "C-<tab>" 'mode-line-other-buffer)
+(bind-key* "C-<" 'undo)
+(bind-key* "<f5>" 'revert-buffer)
 ;; (define-key global-map (kbd "C-x k") 'kill-buffer-and-window)
