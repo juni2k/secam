@@ -83,7 +83,10 @@
 
 (if (eq window-system 'w32)
     ;; Courier New can go fuck itself
-    (set-face-attribute 'default nil :family "Consolas" :height 110))
+    (set-face-attribute 'default nil :family "Consolas" :height 110)
+  ;; Not on Windows, thankfully
+  (add-to-list 'default-frame-alist
+               '(font . "SF Mono-10:weight=demibold")))
 
 ;; No tool bar
 (tool-bar-mode -1)
