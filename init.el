@@ -103,11 +103,20 @@
 ;; Modes and Languages
 ;; =====================================================================
 
-;; Lisp
-;; ----
+;; Lisp / Lisp-likes
+;; -----------------
 
 ;; We stan Steel Bank CL!
 (setq inferior-lisp-program "sbcl")
+
+;; Geiser (Scheme, Racket, etc.)
+(use-package geiser
+  :ensure t
+  :init
+  ;; Do not open a new window at startup
+  (setq geiser-repl-use-other-window nil)
+  ;; Racket, and only Racket
+  (setq geiser-active-implementations '(racket)))
 
 ;; Web mode
 ;; --------
