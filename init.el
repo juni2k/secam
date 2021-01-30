@@ -194,6 +194,7 @@
 (use-package company
   :ensure t
   :init
+  (bind-key* "C-#" 'company-complete)
   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; FZF
