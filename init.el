@@ -106,8 +106,19 @@
 ;; Lisp / Lisp-likes
 ;; -----------------
 
-;; We stan Steel Bank CL!
-(setq inferior-lisp-program "sbcl")
+;; SLIME
+(use-package slime
+  :ensure t
+  :config
+  ;; We stan Steel Bank CL!
+  (setq inferior-lisp-program "sbcl")
+  (slime-setup '(slime-fancy slime-company)))
+
+(use-package slime-company
+  :ensure t
+  :after (slime company)
+  :config
+  (setq slime-company-completion 'fuzzy))
 
 ;; Geiser (Scheme, Racket, etc.)
 (use-package geiser
