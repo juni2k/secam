@@ -280,7 +280,6 @@
 (use-package org-journal
   :defer t
   :custom
-  (org-extend-today-until 6) ; New day begins at 6 am!
   (org-journal-file-type 'weekly))
 
 (bind-key* "C-c C-j" 'org-journal-new-entry)
