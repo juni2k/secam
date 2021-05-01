@@ -201,6 +201,11 @@
   :ensure t
   :config
   (setq ccls-executable "ccls")
+  (setq lsp-enable-on-type-formatting nil) ; FUCK YOU FUCK YOU FUCK YOU
+                                           ; FUCK YOU FUCK YOU FUCK YOU
+                                           ; FUCK YOU FUCK YOU FUCK YOU
+                                           ; FUCK YOU FUCK YOU FUCK YOU
+                                           ; FUCK YOU FUCK YOU FUCK YOU
   ;; Deferred for C
   :commands (lsp lsp-deferred)
   :hook (c-mode . (lambda () (require 'ccls) (lsp-deferred))))
