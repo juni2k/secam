@@ -155,7 +155,11 @@
     (setq web-mode-css-indent-offset nanont/indent-level)
     (setq web-mode-code-indent-offset nanont/indent-level)
     (setq web-mode-indent-style nanont/indent-level))
-  (add-hook 'web-mode-hook 'web-mode-custom-indent))
+  (add-hook 'web-mode-hook 'web-mode-custom-indent)
+  :config
+  ;; Stop web-mode from placing quotes like `abbr=""` the
+  ;; second you type the equal sign
+  (setq web-mode-enable-auto-quoting nil))
 
 ;; CSS Mode
 ;; --------
