@@ -76,10 +76,24 @@
       custom-theme-load-path)
 
 ;; Theme
+(use-package twilight-bright-theme
+  :ensure t)
+
 (use-package gruvbox-theme
-  :ensure t
-  :config
-  (load-theme 'gruvbox-dark-hard t))
+  :ensure t)
+
+(setq nanont/themes '(twilight-bright gruvbox-dark-hard))
+(load-theme (car nanont/themes) t)
+
+(defun nanont/rotate-themes ()
+  (interactive)
+  ;; disable current theme
+  (disable-theme (car nanont/themes))
+  ;; rotate theme list
+  (setq nanont/themes
+        (nconc (last nanont/themes) (butlast nanont/themes)))
+  ;; enable new theme
+  (load-theme (car nanont/themes) t))
 
 (if (eq window-system 'w32)
     ;; Courier New can go fuck itself
@@ -299,4 +313,5 @@
 (bind-key* "C-<tab>" 'mode-line-other-buffer)
 (bind-key* "C-<" 'undo)
 (bind-key* "<f5>" 'revert-buffer)
+(bind-key* "C-c t" 'nanont/rotate-themes)
 ;; (define-key global-map (kbd "C-x k") 'kill-buffer-and-window)
