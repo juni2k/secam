@@ -148,7 +148,8 @@
 
 (use-package web-mode
   :ensure t
-  :mode "\\.\(tt2\|html\)\\'"
+  :mode ("\\.tt2\\'"
+         "\\.html\\'")
   :init
   (defun web-mode-custom-indent ()
     (setq web-mode-markup-indent-offset nanont/indent-level)
