@@ -69,6 +69,12 @@
 ;; Don't litter autosave files everywhere
 (setq backup-directory-alist `(("." . "~/.emacs-autosave")))
 
+;; Dired
+;; =====================================================================
+
+;; Hide details [press ( to show]
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
 ;; Theming
 ;; =====================================================================
 
