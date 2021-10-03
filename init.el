@@ -47,6 +47,14 @@
 ; (add-hook 'emacs-startup-hook 'delete-other-windows)
 (setq inhibit-startup-screen t)
 
+;; General Emacs customization
+;; =====================================================================
+
+;; Load up inferior lisp in the same window. This tweak alone improves
+;; my sanity by at least 10%.
+(add-to-list 'display-buffer-alist
+             '("\\*inferior-lisp\\*" (display-buffer-same-window)))
+
 ;; Dashboard
 ;; =====================================================================
 (use-package page-break-lines
