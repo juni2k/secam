@@ -313,6 +313,7 @@
 (use-package org-journal
   :defer t
   :custom
+  (org-journal-dir "~/org/journal")
   (org-journal-file-type 'weekly))
 
 (bind-key* "C-c C-j" 'org-journal-new-entry)
