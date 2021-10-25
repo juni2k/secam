@@ -163,6 +163,7 @@
 (use-package web-mode
   :ensure t
   :mode ("\\.tt2\\'"
+         "\\.dtl\\'"
          "\\.html\\'")
   :init
   (defun web-mode-custom-indent ()
