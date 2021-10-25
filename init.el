@@ -268,13 +268,6 @@
 (when (version<= "26.0.50" emacs-version)
   (global-display-line-numbers-mode))
 
-;; Fill column indicator ...
-(when (version<= "27.1" emacs-version)
-  (global-display-fill-column-indicator-mode)
-  ;; ... but not for dashboard-mode!
-  (add-hook 'dashboard-mode-hook
-            (lambda () (display-fill-column-indicator-mode -1))))
-
 ;; Line numbers and column numbers in the mode line
 (setq line-number-mode t)
 (setq column-number-mode t)
