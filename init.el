@@ -328,4 +328,5 @@
 (bind-key* "C-<" 'undo)
 (bind-key* "<f5>" 'revert-buffer)
 (bind-key* "C-c t" 'nanont/rotate-themes)
+(bind-key* "C-x C-o" 'ff-find-other-file)
 ;; (define-key global-map (kbd "C-x k") 'kill-buffer-and-window)
