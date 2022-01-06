@@ -96,7 +96,10 @@
 (use-package gruvbox-theme
   :ensure t)
 
-(setq nanont/themes '(twilight-bright gruvbox-dark-hard))
+(use-package faff-theme
+  :ensure t)
+
+(setq nanont/themes '(faff twilight-bright gruvbox-dark-hard))
 (load-theme (car nanont/themes) t)
 
 (defun nanont/rotate-themes ()
