@@ -109,12 +109,18 @@
   ;; enable new theme
   (load-theme (car nanont/themes) t))
 
-(if (eq window-system 'w32)
-    ;; Courier New can go fuck itself
-    (set-face-attribute 'default nil :family "Consolas" :height 110)
-  ;; Not on Windows, thankfully
-  (add-to-list 'default-frame-alist
-               '(font . "SF Mono-10:weight=demibold")))
+;; Fonts
+;; https://emacsredux.com/blog/2021/12/22/check-if-a-font-is-available-with-emacs-lisp/
+(defun font-available-p (font-name)
+  (find-font (font-spec :name font-name)))
+
+(cond
+ ;; This is a surprisingly good font, thanks M$
+ ((font-available-p "Consolas")
+  (set-frame-font "Consolas-11"))
+ ;; *nix
+ ((font-available-p "Unifont")
+ (set-frame-font "Unifont-12")))
 
 ;; No tool bar
 (tool-bar-mode -1)
