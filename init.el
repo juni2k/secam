@@ -97,6 +97,8 @@
 (defun font-available-p (font-name)
   (find-font (font-spec :name font-name)))
 
+(set-frame-font "6x13")
+
 (cond
  ;; This is a surprisingly good font, thanks M$
  ((font-available-p "Consolas")
