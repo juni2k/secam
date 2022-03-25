@@ -90,27 +90,7 @@
       custom-theme-load-path)
 
 ;; Theme
-(use-package twilight-bright-theme
-  :ensure t)
-
-(use-package gruvbox-theme
-  :ensure t)
-
-(use-package faff-theme
-  :ensure t)
-
-(setq nanont/themes '(faff twilight-bright gruvbox-dark-hard))
-(load-theme (car nanont/themes) t)
-
-(defun nanont/rotate-themes ()
-  (interactive)
-  ;; disable current theme
-  (disable-theme (car nanont/themes))
-  ;; rotate theme list
-  (setq nanont/themes
-        (nconc (last nanont/themes) (butlast nanont/themes)))
-  ;; enable new theme
-  (load-theme (car nanont/themes) t))
+(load-theme 'plain t)
 
 ;; Fonts
 ;; https://emacsredux.com/blog/2021/12/22/check-if-a-font-is-available-with-emacs-lisp/
