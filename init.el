@@ -27,6 +27,11 @@
 ;; Constants
 (setq nanont/indent-level 2)
 
+;; Tame Cocoa Emacs
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      x-select-enable-clipboard t)
+
 ;; Customization
 ;; =====================================================================
 (setq custom-file (concat user-emacs-directory "custom.el"))
