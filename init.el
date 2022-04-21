@@ -121,8 +121,9 @@
 ;; No tool bar
 (tool-bar-mode -1)
 
-;; No menu bar
-(menu-bar-mode -1)
+;; No menu bar (except for Cocoa)
+(unless (eq window-system 'ns)
+  (menu-bar-mode -1))
 
 ;; No scroll bar
 (scroll-bar-mode -1)
