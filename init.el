@@ -50,6 +50,8 @@
   (setenv "PATH" (concat (getenv "PATH") ":" path))
   (setq exec-path (append exec-path (list path))))
 
+(setq user-home-directory (concat (getenv "HOME")))
+
 ;; Startup
 ;; =====================================================================
 
