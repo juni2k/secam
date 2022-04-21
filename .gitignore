@@ -8,5 +8,6 @@ session.*
 \#recentf\#
 .lsp-session-v1
 custom.el
+local.el
 org-journal.cache
 recentf
