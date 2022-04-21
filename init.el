@@ -44,6 +44,12 @@
                          t
                          directory-files-no-dot-files-regexp)))
 
+;; System
+;; =====================================================================
+(defun add-to-paths (path)
+  (setenv "PATH" (concat (getenv "PATH") ":" path))
+  (setq exec-path (append exec-path (list path))))
+
 ;; Startup
 ;; =====================================================================
 
