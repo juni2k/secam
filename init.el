@@ -100,9 +100,6 @@
 (push (substitute-in-file-name "~/.emacs.d/themes/")
       custom-theme-load-path)
 
-;; Theme
-(load-theme 'plain t)
-
 ;; Fonts
 ;; https://emacsredux.com/blog/2021/12/22/check-if-a-font-is-available-with-emacs-lisp/
 (defun font-available-p (font-name)
