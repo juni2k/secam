@@ -44,6 +44,11 @@
                          t
                          directory-files-no-dot-files-regexp)))
 
+;; Convenience function for editing init.el
+(defun edit-init ()
+  (interactive)
+  (find-file user-init-file))
+
 ;; System
 ;; =====================================================================
 (defun add-to-paths (path)
