@@ -282,10 +282,6 @@
 ;; Editing
 ;; =====================================================================
 
-;; Line numbers on the left
-(when (version<= "26.0.50" emacs-version)
-  (global-display-line-numbers-mode))
-
 ;; Line numbers and column numbers in the mode line
 (setq line-number-mode t)
 (setq column-number-mode t)
