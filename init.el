@@ -18,6 +18,11 @@
   (require 'bind-key)
   (require 'use-package))
 
+;; Interactively Do Things -- part of Emacs since v22.
+;; "oh wow, this makes everything so much better" -- martin 2023
+(require 'ido)
+(ido-mode t)
+
 ;; Defaults etc.
 ;; =====================================================================
 
