@@ -322,7 +322,9 @@
   :ensure t
   :defer t
   :custom
-  (org-journal-dir "~/org/journal")
+  (org-journal-dir (if (member system-type '(windows-nt cygwin))
+                       "~/Documents/org/journal"
+                       "~/org/journal"))
   (org-journal-file-type 'weekly))
 
 (bind-key* "C-c C-j" 'org-journal-new-entry)
