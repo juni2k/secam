@@ -105,6 +105,9 @@
                     :foreground (face-foreground 'default)
                     :background (face-background 'default))
 
+;; Disable left fringe (right one is sufficient)
+(set-fringe-mode '(0 . nil))
+
 ;; Fonts
 ;; https://emacsredux.com/blog/2021/12/22/check-if-a-font-is-available-with-emacs-lisp/
 (defun font-available-p (font-name)
