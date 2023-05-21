@@ -1,3 +1,7 @@
+;; Make this file run faster by making GC run less often
+;; Remember to reset this value at the end!
+(setq gc-cons-threshold 100000000)
+
 ;; MELPA
 ;; =====================================================================
 
@@ -330,3 +334,7 @@
 ;; Per-Device Customization
 ;; =====================================================================
 (load (concat user-emacs-directory "local.el"))
+
+;; Post-init
+;; =====================================================================
+(custom-reevaluate-setting 'gc-cons-threshold)
