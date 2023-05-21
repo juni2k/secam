@@ -100,6 +100,11 @@
 ;; I seriously do NOT get low-contrast people.
 (set-background-color "#151515")
 
+;; Make fringes use the default background colour
+(set-face-attribute 'fringe nil
+                    :foreground (face-foreground 'default)
+                    :background (face-background 'default))
+
 ;; Fonts
 ;; https://emacsredux.com/blog/2021/12/22/check-if-a-font-is-available-with-emacs-lisp/
 (defun font-available-p (font-name)
