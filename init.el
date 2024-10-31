@@ -1,3 +1,7 @@
+;; EMACS(-A) INIT FILE - the monumental one
+;;   (for writing source code)
+;; =====================================================================
+
 ;; Make this file run faster by making GC run less often
 ;; Remember to reset this value at the end!
 (setq gc-cons-threshold 100000000)
@@ -28,46 +32,14 @@
 ;; Frame title
 (setq frame-title-format '("" "%b :: Emacs NT 4.0 Workstation"))
 
-;; Constants
-(setq nanont/indent-level 2)
-
 ;; Tame Cocoa Emacs
 (setq mac-option-modifier nil
       mac-command-modifier 'meta
       x-select-enable-clipboard t)
 
-;; Customization
+;; Load common config
 ;; =====================================================================
-(setq custom-file (concat user-emacs-directory "custom.el"))
-
-;; Add 3rd-party-lisp to load path
-(let ((add-it (lambda (dir)
-                (add-to-list 'load-path dir))))
-  (mapc add-it
-        (directory-files (concat user-emacs-directory "vendor-lisp")
-                         t
-                         directory-files-no-dot-files-regexp)))
-
-;; Convenience function for editing init.el
-(defun edit-init ()
-  (interactive)
-  (find-file user-init-file))
-
-;; System
-;; =====================================================================
-(defun add-to-paths (path)
-  (setenv "PATH" (concat (getenv "PATH") ":" path))
-  (setq exec-path (append exec-path (list path))))
-
-(setq user-home-directory (concat (getenv "HOME")))
-
-;; Startup
-;; =====================================================================
-
-;; Get rid of that super shitty default behaviour to open
-;, new instances for file preview in a split window
-; (add-hook 'emacs-startup-hook 'delete-other-windows)
-(setq inhibit-startup-screen t)
+(load (concat user-emacs-directory "common.el"))
 
 ;; General Emacs customization
 ;; =====================================================================
@@ -76,18 +48,6 @@
 ;; my sanity by at least 10%.
 (add-to-list 'display-buffer-alist
              '("\\*inferior-lisp\\*" (display-buffer-same-window)))
-
-;; Files
-;; =====================================================================
-
-;; Don't litter autosave files everywhere
-(setq backup-directory-alist `(("." . "~/.emacs-autosave")))
-
-;; Dired
-;; =====================================================================
-
-;; Hide details [press ( to show]
-(add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 ;; Theming
 ;; =====================================================================
@@ -109,22 +69,6 @@
 
 ;; Disable left fringe (right one is sufficient)
 (set-fringe-mode '(0 . nil))
-
-;; Fonts
-;; https://emacsredux.com/blog/2021/12/22/check-if-a-font-is-available-with-emacs-lisp/
-(defun font-available-p (font-name)
-  (find-font (font-spec :name font-name)))
-
-(when (eq window-system 'x)
-  (set-frame-font "6x13"))
-
-(cond
- ;; This is a surprisingly good font, thanks M$
- ((font-available-p "Consolas")
-  (set-frame-font "Consolas-11"))
- ;; *nix
- ((font-available-p "Unifont")
- (set-frame-font "Unifont-12")))
 
 ;; No tool bar
 (tool-bar-mode -1)
@@ -217,21 +161,6 @@
 ;; Editing
 ;; =====================================================================
 
-;; Line numbers and column numbers in the mode line
-(setq line-number-mode t)
-(setq column-number-mode t)
-
-;; Tell tabs to go home, and set indentation leven
-(setq-default indent-tabs-mode nil)
-(setq tab-width nanont/indent-level)
-
-;; Don't indent the previous line when typing <RET>
-;; (but keep indenting the new line)
-(setq-default electric-indent-inhibit t)
-
-;; Fill towards 72 columns ...
-(setq-default fill-column 72)
-
 ;; Highlight matching parentheses on "hovering" over them
 (show-paren-mode 1)
 
@@ -243,14 +172,6 @@
 
 ;; Org
 ;; =====================================================================
-
-
-(bind-key* "C-c l" 'org-store-link)
-(bind-key* "C-c a" 'org-agenda)
-(bind-key* "C-c c" 'org-capture)
-
-;; Log time when closing TODO items
-(setq org-log-done 'time)
 
 ;; org-journal
 (use-package org-journal
@@ -265,34 +186,16 @@
 
 (bind-key* "C-c C-j" 'org-journal-new-entry)
 
-;; Saving
-;; =====================================================================
-
-;; Delete trailing whitespace on save
-(defun nanont/delete-trailing-whitespace-hook ()
-  (when (not (eq major-mode 'markdown-mode))
-    (delete-trailing-whitespace)))
-(add-hook 'before-save-hook 'nanont/delete-trailing-whitespace-hook)
-
-;; Misc. Keybindings
-;; =====================================================================
-(bind-key* "C-<tab>" 'mode-line-other-buffer)
-(bind-key* "C-<" 'undo)
-(bind-key* "<f5>" 'revert-buffer)
-(bind-key* "C-c t" 'nanont/rotate-themes)
-(bind-key* "C-x C-o" 'ff-find-other-file)
-;; (define-key global-map (kbd "C-x k") 'kill-buffer-and-window)
-
-;; Per-Device Customization
-;; =====================================================================
-(load (concat user-emacs-directory "local.el"))
-
-;; Post-init
-;; =====================================================================
-(custom-reevaluate-setting 'gc-cons-threshold)
-
 ;; Manual bloat-loading facilities
 ;; =====================================================================
 (defun load-bloat ()
   (interactive)
   (load (concat user-emacs-directory "bloat.el")))
+
+;; Per-Device Customization
+;; =====================================================================
+(juni/load-local)
+
+;; Post-init
+;; =====================================================================
+(custom-reevaluate-setting 'gc-cons-threshold)
