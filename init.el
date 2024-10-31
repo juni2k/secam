@@ -95,6 +95,8 @@
 (push (substitute-in-file-name "~/.emacs.d/themes/")
       custom-theme-load-path)
 
+(use-package kaolin-themes
+  :ensure t)
 (load-theme 'kaolin-blossom t)
 
 ;; I seriously do NOT get low-contrast people.
