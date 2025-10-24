@@ -49,40 +49,6 @@
 (add-to-list 'display-buffer-alist
              '("\\*inferior-lisp\\*" (display-buffer-same-window)))
 
-;; Theming
-;; =====================================================================
-
-(push (substitute-in-file-name "~/.emacs.d/themes/")
-      custom-theme-load-path)
-
-(use-package kaolin-themes
-  :ensure t)
-(load-theme 'kaolin-blossom t)
-
-;; I seriously do NOT get low-contrast people.
-(set-background-color "#151515")
-
-;; Make fringes use the default background colour
-(set-face-attribute 'fringe nil
-                    :foreground (face-foreground 'default)
-                    :background (face-background 'default))
-
-;; Disable left fringe (right one is sufficient)
-(set-fringe-mode '(0 . nil))
-
-;; No tool bar
-(tool-bar-mode -1)
-
-;; No menu bar (except for Cocoa)
-(unless (eq window-system 'ns)
-  (menu-bar-mode -1))
-
-;; No scroll bar
-(scroll-bar-mode -1)
-
-;; Mouse color
-(set-mouse-color "#20B2AA")
-
 ;; Modes and Languages
 ;; =====================================================================
 
@@ -161,6 +127,9 @@
 ;; Editing
 ;; =====================================================================
 
+;; Highlight current line
+(global-hl-line-mode 1)
+
 ;; Highlight matching parentheses on "hovering" over them
 (show-paren-mode 1)
 
@@ -191,6 +160,61 @@
 (defun load-bloat ()
   (interactive)
   (load (concat user-emacs-directory "bloat.el")))
+
+
+;; Theming
+;; =====================================================================
+
+(push (substitute-in-file-name "~/.emacs.d/themes/")
+      custom-theme-load-path)
+
+;; I seriously do NOT get low-contrast people.
+(set-background-color "#000000")
+(set-foreground-color "#ffffff")
+
+;; Minimal yet practical colour scheme.
+;; Tip: List the currently applied face at POINT with M-x describe-char
+(set-face-foreground 'font-lock-comment-face "#ffffff")
+(set-face-background 'font-lock-comment-face "#333333")
+
+(set-face-foreground 'font-lock-string-face "#ff0000")
+(set-face-foreground 'font-lock-number-face "#ff0000")
+
+(set-face-foreground 'font-lock-keyword-face "#ffffff")
+(set-face-foreground 'font-lock-type-face "#ffffff")
+(set-face-foreground 'font-lock-function-name-face "#ff0000")
+(set-face-foreground 'font-lock-function-call-face "#ff0000")
+(set-face-foreground 'font-lock-variable-name-face "#ffffff")
+(set-face-foreground 'font-lock-builtin-face "#ffffff")
+
+(set-face-foreground 'minibuffer-prompt "#ffffff")
+(set-face-background 'minibuffer-prompt "midnight blue")
+
+(set-face-background 'show-paren-match "#ff0000")
+(set-face-foreground 'show-paren-match "#000000")
+
+(set-face-background 'hl-line "midnight blue")
+
+;; Make fringes use the default background colour
+(set-face-attribute 'fringe nil
+                    :foreground (face-foreground 'default)
+                    :background (face-background 'default))
+
+;; Disable left fringe (right one is sufficient)
+(set-fringe-mode '(0 . nil))
+
+;; No tool bar
+(tool-bar-mode -1)
+
+;; No menu bar (except for Cocoa)
+(unless (eq window-system 'ns)
+  (menu-bar-mode -1))
+
+;; No scroll bar
+(scroll-bar-mode -1)
+
+;; Mouse color
+(set-mouse-color "#20B2AA")
 
 ;; Per-Device Customization
 ;; =====================================================================
