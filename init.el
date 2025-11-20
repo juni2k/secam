@@ -172,6 +172,22 @@
 (set-background-color "#000000")
 (set-foreground-color "#ffffff")
 
+(defun ensure-face (face)
+  (or (facep face)
+      (make-empty-face face)))
+
+(ensure-face 'font-lock-comment-face)
+(ensure-face 'font-lock-string-face)
+(ensure-face 'font-lock-number-face)
+(ensure-face 'font-lock-keyword-face)
+(ensure-face 'font-lock-type-face)
+(ensure-face 'font-lock-function-name-face)
+(ensure-face 'font-lock-function-call-face)
+(ensure-face 'font-lock-variable-name-face)
+(ensure-face 'font-lock-builtin-face)
+;(ensure-face 'font-lock-function-name-face)
+;(ensure-face 'font-lock-function-call-face)
+
 ;; Minimal yet practical colour scheme.
 ;; Tip: List the currently applied face at POINT with M-x describe-char
 (set-face-foreground 'font-lock-comment-face "#ffffff")
