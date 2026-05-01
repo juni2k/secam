@@ -22,6 +22,8 @@
 
 ;; Require(s)
 ;; =====================================================================
+;; Both of these are shipped with Emacs >= 29.1 - probably even
+;; with some lower version.
 (eval-when-compile
   (require 'bind-key)
   (require 'use-package))
@@ -56,7 +58,6 @@
 ;; --------
 
 (use-package web-mode
-  :ensure t
   :mode ("\\.tt2\\'"
          "\\.dtl\\'"
          "\\.html\\'")
@@ -110,7 +111,6 @@
 ;; Company
 ;; =====================================================================
 (use-package company
-  :ensure t
   :init
   (bind-key* "C-#" 'company-complete)
   (add-hook 'after-init-hook 'global-company-mode))
@@ -118,7 +118,6 @@
 ;; FZF
 ;; =====================================================================
 (use-package fzf
-  ; :ensure t
   :init
   ; This actually Does The Right Thing by asking
   ; for a path if not in a git directory! Funky!
@@ -135,7 +134,6 @@
 
 ;; Enable EditorConfig
 (use-package editorconfig
-  :ensure t
   :config
   (editorconfig-mode 1))
 
@@ -144,7 +142,6 @@
 
 ;; org-journal
 (use-package org-journal
-  :ensure t
   :defer t
   :custom
   (org-journal-dir (if (member system-type '(windows-nt cygwin))
