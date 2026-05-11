@@ -22,6 +22,7 @@
 
 ;; Require(s)
 ;; =====================================================================
+
 ;; Both of these are shipped with Emacs >= 29.1 - probably even
 ;; with some lower version.
 (eval-when-compile
@@ -152,13 +153,6 @@
 
 (bind-key* "C-c C-j" 'org-journal-new-entry)
 
-;; Manual bloat-loading facilities
-;; =====================================================================
-(defun load-bloat ()
-  (interactive)
-  (load (concat user-emacs-directory "bloat.el")))
-
-
 ;; Theming
 ;; =====================================================================
 
@@ -236,6 +230,20 @@
 
 ;; Mouse color
 (set-mouse-color "#20B2AA")
+
+;; Language Server
+;; =====================================================================
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-<return>"))
+
+(use-package lsp-ui)
+
+;; For some reason, lsp-mode throws a fit if these are not explicitly
+;; loaded, even though they ship with lsp-mode.
+(require 'lsp-lens)
+(require 'lsp-modeline)
+(require 'lsp-headerline)
 
 ;; Per-Device Customization
 ;; =====================================================================
