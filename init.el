@@ -207,6 +207,14 @@
 (set-face-foreground 'show-paren-match "#000000")
 
 (set-face-background 'hl-line "midnight blue")
+(set-background-color "#000000")
+
+;; But actually let's load kaolin
+(require 'kaolin-themes)
+(load-theme 'kaolin-blossom t)
+
+(set-background-color "#000000")
+(set-face-background 'hl-line "midnight blue")
 
 ;; Make fringes use the default background colour
 (set-face-attribute 'fringe nil
